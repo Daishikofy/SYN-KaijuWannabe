@@ -15,7 +15,7 @@ public class WeakPoint : MonoBehaviour, IBreakable
 
     public void Attacked()
     {
-        if (--lifePoints <= 0)
+        if (--lifePoints <= 0 && !isBroken)
         {
             Break();
         }
@@ -23,6 +23,7 @@ public class WeakPoint : MonoBehaviour, IBreakable
 
     private void Break()
     {
+        isBroken = true;
         GetComponent<MeshRenderer>().material.color = Color.red;
         onBroken.Invoke();
     }
