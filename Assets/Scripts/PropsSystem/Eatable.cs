@@ -17,7 +17,7 @@ public class Eatable : MonoBehaviour
         {
             _collider = GetComponent<Collider>();
         }
-        objectLevel = (int)(_collider.bounds.size.x * _collider.bounds.size.y * _collider.bounds.size.z);
+        objectLevel = KaijuUtils.GetLevel(_collider.bounds);
     }
 
     // Start is called before the first frame update

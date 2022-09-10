@@ -102,7 +102,8 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("OnEat");
 
         GameManager.instance.AddToScore(1);
-        int newLevel = (int)(_collider.bounds.size.x * _collider.bounds.size.y * _collider.bounds.size.z);
+        
+        int newLevel = KaijuUtils.GetLevel(_collider.bounds);
         if (newLevel != playerLevel)
         {
             GameManager.instance.UpdatePlayerLevel(newLevel);

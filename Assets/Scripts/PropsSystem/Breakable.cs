@@ -15,6 +15,8 @@ public class Breakable : MonoBehaviour, IBreakable
 
     private Collider _collider;
 
+    private bool isBroken = false;
+
     [Button("Damage", true)]
     public int damageMe;
 
@@ -34,13 +36,16 @@ public class Breakable : MonoBehaviour, IBreakable
         {
             _collider = GetComponent<Collider>();
         }
-        objectLevel = (int) (_collider.bounds.size.x * _collider.bounds.size.y * _collider.bounds.size.z);
+        objectLevel = KaijuUtils.GetLevel(_collider.bounds);
     }
 
     public void Attacked()
     {
+        if (isBroken)
+            return;
         if (GameManager.instance.currentPlayerLevel >= objectLevel)
         {
+            lifePoints--;
             if (lifePoints <= 0)
             {
                 Break();
@@ -65,6 +70,7 @@ public class Breakable : MonoBehaviour, IBreakable
             Instantiate(item, transform.position, Quaternion.identity);
         }
         gameObject.SetActive(false);
+        isBroken = true;
     }
 
     public void StructureBroke()

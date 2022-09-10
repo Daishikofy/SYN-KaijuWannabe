@@ -11,6 +11,8 @@ public class WeakPoint : MonoBehaviour, IBreakable
     [SerializeField]
     private int lifePoints = 1;
 
+    private bool isBroken = false;
+
     public void Attacked()
     {
         if (--lifePoints <= 0)
