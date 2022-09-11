@@ -17,9 +17,6 @@ public class Breakable : MonoBehaviour, IBreakable
 
     private bool isBroken = false;
 
-    [Button("Damage", true)]
-    public int damageMe;
-
     [Button("Restore")]
     public int restoreMe;
 

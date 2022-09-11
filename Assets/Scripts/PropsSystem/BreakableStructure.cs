@@ -8,8 +8,36 @@ public class BreakableStructure : MonoBehaviour
     private Collectible[] itemsToSpawn;
     [SerializeField]
     private List<WeakPoint> weakPoints;
+    [SerializeField]
+    private int objectLevel = 0;
+
+    [SerializeField]
+    private Collider _collider;
 
     private int weakPointDestroyedCounter = 0;
+    private bool wasEaten = false;
+
+    #region EDITOR SETUP
+
+    [Button("SetAutomaticLevel")]
+    public int setMyLevel;
+    public void SetAutomaticLevel()
+    {
+        objectLevel = 0;
+        foreach (var weakPoint in weakPoints)
+        {
+            objectLevel += weakPoint.objectLevel;
+        }
+    }
+    
+    private void OnValidate()
+    {
+        if (_collider == null)
+        {
+            _collider = GetComponent<Collider>();
+        }
+    }
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +45,12 @@ public class BreakableStructure : MonoBehaviour
         foreach (var weakPoint in weakPoints)
         {
             weakPoint.onBroken.AddListener(OnWeakPointDestroyed);
+        }
+        GameManager.instance.onPlayerLevelChanged.AddListener(OnPlayerLevelChanged);
+
+        if (objectLevel == 0)
+        {
+            SetStructureToTrigger();
         }
     }
 
@@ -40,5 +74,39 @@ public class BreakableStructure : MonoBehaviour
             Instantiate(item, transform.position, Quaternion.identity);
         }
         gameObject.SetActive(false);
+    }
+
+// Functions related to eatable phase
+
+    private void OnPlayerLevelChanged(int newLevel)
+    {
+        if (newLevel > objectLevel)
+        {
+            SetStructureToTrigger();
+        }
+    }
+
+    private void SetStructureToTrigger()
+    {
+        foreach (var weakPoint in weakPoints)
+        {
+            weakPoint._collider.enabled = false;
+        }
+        _collider.isTrigger = true;
+        _collider.enabled = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!wasEaten && other.CompareTag("Player"))
+        {
+            var hit = other.GetComponentInParent<PlayerController>();
+            if (hit != null)
+            {
+                hit.Eat();
+                wasEaten = true;
+                Destroy(this.gameObject);
+            }
+        }
     }
 }

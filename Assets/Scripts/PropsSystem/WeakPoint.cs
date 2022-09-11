@@ -11,7 +11,31 @@ public class WeakPoint : MonoBehaviour, IBreakable
     [SerializeField]
     private int lifePoints = 1;
 
+    [SerializeField]
+    public int objectLevel = 0;
+    [SerializeField]
+    private Bounds colliderBounds;
+
+    
+    public Collider _collider; 
+
     private bool isBroken = false;
+
+    [Button("SetAutomaticLevel")]
+    public int setMyLevel;
+    public void SetAutomaticLevel()
+    {
+        objectLevel = KaijuUtils.GetLevel(_collider.bounds);
+    }
+
+    private void OnValidate()
+    {
+        if (_collider == null)
+        {
+            _collider = GetComponent<Collider>();
+            colliderBounds = _collider.bounds;
+        }
+    }
 
     public void Attacked()
     {

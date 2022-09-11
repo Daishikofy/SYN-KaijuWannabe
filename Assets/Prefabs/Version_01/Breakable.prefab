@@ -102,6 +102,7 @@ MonoBehaviour:
   - {fileID: 8760072755824710267, guid: 18843db741d07b44fb26cfaaa539efa2, type: 3}
   - {fileID: 8760072755824710267, guid: 18843db741d07b44fb26cfaaa539efa2, type: 3}
   - {fileID: 8760072755824710267, guid: 18843db741d07b44fb26cfaaa539efa2, type: 3}
+  noDamageAnimation: {fileID: 0}
   damageMe: 0
   restoreMe: 0
 --- !u!136 &5872430465201800471

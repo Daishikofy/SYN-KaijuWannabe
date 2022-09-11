@@ -20,7 +20,15 @@ public class PlayerAttack : MonoBehaviour
         var hit = other.GetComponent<IBreakable>();
         if (hit != null)
         {
-           hit.Attacked();                       
+           hit.Attacked();
+        }
+        else
+        {
+            hit = GetComponentInParent<IBreakable>();
+            if (hit != null)
+            {
+                hit.Attacked();
+            }
         }
     }
 }
