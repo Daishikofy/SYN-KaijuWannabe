@@ -39,9 +39,19 @@ public class WeakPoint : MonoBehaviour, IBreakable
 
     public void Attacked()
     {
-        if (--lifePoints <= 0 && !isBroken)
+        if (isBroken)
+            return;
+        int playerLevel = GameManager.instance.currentPlayerLevel;
+        if (objectLevel >= playerLevel && objectLevel <= playerLevel + 1)
         {
-            Break();
+            if (--lifePoints <= 0)
+            {
+                Break();
+            }
+        }
+        else 
+        {
+            ReceivesNoDamage();
         }
     }
 
@@ -55,6 +65,11 @@ public class WeakPoint : MonoBehaviour, IBreakable
     public void StructureBroke()
     {
         gameObject.SetActive(false);
+    }
+
+    private void ReceivesNoDamage()
+    {
+
     }
 
 }
