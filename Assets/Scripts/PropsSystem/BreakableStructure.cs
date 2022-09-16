@@ -80,7 +80,7 @@ public class BreakableStructure : MonoBehaviour
 
     private void OnPlayerLevelChanged(int newLevel)
     {
-        if (newLevel > objectLevel)
+        if (newLevel > objectLevel * 2)
         {
             SetStructureToTrigger();
             GameManager.instance.onPlayerLevelChanged.RemoveListener(OnPlayerLevelChanged);

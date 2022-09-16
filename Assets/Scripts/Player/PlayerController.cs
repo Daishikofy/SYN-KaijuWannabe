@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float dashCooldown = 1.0f;
 
+    [Header("Eating variables")]
+    [SerializeField]
+    private float growthPerUnit = 0.1f;
+
     [Header("Player Components")]
     [SerializeField]
     private Rigidbody rb;
@@ -98,18 +102,16 @@ public class PlayerController : MonoBehaviour
 
     public void Eat()
     {
-        transform.localScale += Vector3.one * 0.1f;
-        animator.SetTrigger("OnEat");
+        transform.localScale += Vector3.one * growthPerUnit;
 
         GameManager.instance.AddToScore(1);
-        
-        int newLevel = KaijuUtils.GetLevel(_collider.bounds);
+        int newLevel = KaijuUtils.GetLevel(transform.localScale.x);
         if (newLevel != playerLevel)
-        {
+        {         
             GameManager.instance.UpdatePlayerLevel(newLevel);
             playerLevel = newLevel;
         }
-
+        animator.SetTrigger("OnEat");
     }
 
     public void Update()

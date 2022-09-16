@@ -7,9 +7,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5160171753094483240, guid: afbc137f9f8af7143b435b77ff6159f6, type: 3}
+      propertyPath: m_Size.x
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160171753094483240, guid: afbc137f9f8af7143b435b77ff6159f6, type: 3}
+      propertyPath: m_Size.y
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160171753094483240, guid: afbc137f9f8af7143b435b77ff6159f6, type: 3}
+      propertyPath: m_Size.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160171753094483240, guid: afbc137f9f8af7143b435b77ff6159f6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160171753094483240, guid: afbc137f9f8af7143b435b77ff6159f6, type: 3}
+      propertyPath: m_Center.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160171753094483240, guid: afbc137f9f8af7143b435b77ff6159f6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8372899399042723260, guid: afbc137f9f8af7143b435b77ff6159f6, type: 3}
       propertyPath: m_Name
-      value: StandaloneBreakable
+      value: StandaloneBreakable_02
       objectReference: {fileID: 0}
     - target: {fileID: 8372899399042723263, guid: afbc137f9f8af7143b435b77ff6159f6, type: 3}
       propertyPath: m_RootOrder

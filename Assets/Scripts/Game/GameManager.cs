@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     private int currentScore;
 
+    public UIManager uIManager;
+
     public int currentPlayerLevel { get; private set;  } = 0;
     public UnityEvent<int> onPlayerLevelChanged;
     private CameraController cameraController;
@@ -42,12 +44,13 @@ public class GameManager : MonoBehaviour
             cameraController.MoveBackward();
             scoreBeforeCameraMovement += scoreBeforeCameraMovement + 5;
         }
-        //Update UI
+        uIManager.UpdateScore(currentScore);
     }
 
     public void UpdatePlayerLevel(int newLevel)
     {
         currentPlayerLevel = newLevel;
         onPlayerLevelChanged.Invoke(currentPlayerLevel);
+        uIManager.UpdateLevel(newLevel);
     }
 }

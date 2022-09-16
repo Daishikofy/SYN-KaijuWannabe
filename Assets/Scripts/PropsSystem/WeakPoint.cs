@@ -42,7 +42,7 @@ public class WeakPoint : MonoBehaviour, IBreakable
         if (isBroken)
             return;
         int playerLevel = GameManager.instance.currentPlayerLevel;
-        if (objectLevel >= playerLevel && objectLevel <= playerLevel + 1)
+        if (objectLevel <= playerLevel + 1)
         {
             if (--lifePoints <= 0)
             {

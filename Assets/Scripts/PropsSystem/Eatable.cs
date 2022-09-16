@@ -37,7 +37,8 @@ public class Eatable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!wasEaten && other.CompareTag("Player"))
+        if (wasEaten) return;
+        if (other.CompareTag("Player"))
         {
             var hit = other.GetComponentInParent<PlayerController>();
             if (hit != null)
