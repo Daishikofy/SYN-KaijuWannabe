@@ -44,13 +44,15 @@ public class GameManager : MonoBehaviour
             cameraController.MoveBackward();
             scoreBeforeCameraMovement += scoreBeforeCameraMovement + 5;
         }
-        uIManager.UpdateScore(currentScore);
+        if (uIManager != null)
+            uIManager.UpdateScore(currentScore);
     }
 
     public void UpdatePlayerLevel(int newLevel)
     {
         currentPlayerLevel = newLevel;
         onPlayerLevelChanged.Invoke(currentPlayerLevel);
-        uIManager.UpdateLevel(newLevel);
+        if (uIManager != null)
+            uIManager.UpdateLevel(newLevel);
     }
 }
